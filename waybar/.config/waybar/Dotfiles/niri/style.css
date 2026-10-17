@@ -1,0 +1,162 @@
+#waybar {
+/* 0.0 is completely invisible, 1.0 is completely solid.
+ *      0.65 gives a nice, clean semi-transparent look. */
+background-color: rgba(0, 0, 0, 0.65);
+
+color: #ffffff;
+border-radius: 50px;       /* Rounded corners */
+
+/* A subtle border helps a transparent bar stand out against wallpapers */
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Global Module Defaults to keep it small --- */
+#custom-files,
+#custom-now-playing,
+#custom-clock,
+#custom-date,
+#workspaces,
+#custom-wifi,
+#custom-bluetooth,
+#battery,
+#pulseaudio,
+#memory,
+#custom-menu {
+padding: 0px 12px; /* 0px top/bottom keeps the bar tiny; 12px left/right keeps spacing clean */
+}
+
+/* --- Left Modules --- */
+#custom-files {
+color: #ccac56;
+font-size: 16px; /* Slightly lowered to fit height 20 */
+margin-right: 5px;
+transition: background-color 0.3s;
+}
+
+#custom-now-playing {
+color: #ccac56;
+font-size: 14px;
+font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+#custom-clock {
+font-size: 14px;
+color: #ccac56;
+font-family: "JetBrainsMono Nerd Font", monospace;
+transition: color 0.3s;
+}
+
+#custom-clock:hover {
+color: #ffffff;
+}
+
+/* --- Center Modules (Niri Workspaces) --- */
+#workspaces {
+font-size: 12px;
+}
+
+#workspaces button {
+padding: 0px 6px;
+margin: 2px 3px;
+min-width: 20px;
+background: transparent;
+color: #aaaaaa;
+border: none;
+border-radius: 20px; /* Rounded individual workspace buttons */
+transition: background 0.2s ease, color 0.2s ease;
+}
+
+#workspaces button.active,
+#workspaces button.focused { /* Added .focused just in case Niri uses it */
+background: #ccac56;
+color: #1e1e2e;
+border-radius: 20px;
+}
+
+#workspaces button:hover {
+background: #444444;
+color: #ffffff;
+}
+
+#workspaces button.urgent {
+background: #bf616a;
+color: #ffffff;
+}
+
+/* --- Right Modules --- */
+#custom-date {
+font-size: 14px;
+color: #ccac56;
+font-family: "JetBrainsMono Nerd Font", monospace;
+transition: color 0.3s;
+}
+
+#custom-date:hover {
+color: #ffffff;
+}
+
+#custom-bluetooth {
+font-size: 16px;
+color: #ccac56;
+transition: color 0.3s;
+}
+
+#custom-wifi {
+font-size: 16px;
+color: #ccac56;
+transition: color 0.3s;
+}
+
+#custom-wifi:hover, #custom-bluetooth:hover {
+color: #ffffff;
+}
+
+#battery {
+font-size: 14px;
+color: #ccac56;
+font-family: "JetBrainsMono Nerd Font", "NotoSans Nerd Font", "monospace";
+}
+
+#battery:hover {
+color: #ffffff;
+}
+
+#battery.charging { color: #a3be8c; }
+#battery.warning { color: #ebcb8b; }
+#battery.critical { color: #bf616a; font-weight: bold; }
+
+#pulseaudio {
+font-size: 14px;
+color: #ccac56;
+font-family: "JetBrainsMono Nerd Font", "monospace";
+}
+
+#pulseaudio:hover {
+color: #ffffff;
+}
+
+#pulseaudio.muted {
+color: #bf616a;
+font-weight: bold;
+}
+
+#memory {
+font-size: 14px;
+color: #d08770; /* Kept your orange tint */
+font-family: "JetBrainsMono Nerd Font", "monospace";
+}
+
+#custom-menu {
+font-size: 16px;
+color: #ccac56;
+transition: color 0.3s;
+}
+
+#custom-menu:hover {
+color: #ffffff;
+}
+
+/* Fix for spotify hover styling */
+#custom-spotify:hover {
+background-color: rgba(29, 185, 84, 0.2);
+}

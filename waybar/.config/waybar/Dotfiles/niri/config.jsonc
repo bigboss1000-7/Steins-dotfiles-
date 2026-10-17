@@ -1,0 +1,116 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-top": 10,
+  "margin-right": 5,
+  "margin-left": 5,
+  "height": 20,
+
+  "modules-left": ["custom/files", "custom/now-playing", "custom/clock"],
+  "modules-center": ["niri/workspaces"],
+  "modules-right": ["custom/date", "custom/bluetooth", "custom/wifi", "battery", "custom/battery-warning", "pulseaudio", "memory", "custom/menu"],
+
+  "custom/files": {
+    "exec": "echo '{\"text\": \"\", \"tooltip\": \"Open File Manager\", \"class\": \"files\"}'",
+    "return-type": "json",
+    "format": "{}",
+    "on-click": "caja",
+    "tooltip": true,
+    "interval": 3600
+  },
+
+  "niri/workspaces": {
+    "format": "{value}",
+    "format-icons": {
+      "default": "{value}"
+    },
+    "on-click": "activate",
+    "on-scroll-up": "niri msg action focus-workspace-up",
+    "on-scroll-down": "niri msg action focus-workspace-down"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": " {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip": true,
+    "interval": 5
+  },
+
+  "custom/battery-warning": {
+    "exec": "/home/bigbossdev/.config/waybar/Other/niri/modules/battery-notify.sh",
+    "interval": 60,
+    "format": "",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " Muted",
+    "format-bluetooth": "{icon} {volume}%",
+    "scroll-step": 2,
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"],
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "hands-free": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    }
+  },
+
+  "memory": {
+    "format": " {used:0.1f}G",
+    "interval": 5
+  },
+
+  "custom/menu": {
+    "exec": "echo '{\"text\": \" \", \"tooltip\": \"System Menu\"}'",
+    "return-type": "json",
+    "on-click": "~/.config/rofi/applets/bin/powermenu.sh",
+    "interval": 5
+  },
+
+  "custom/wifi": {
+    "exec": "echo '{\"text\": \"\", \"tooltip\": \"Wi-Fi Settings\"}'",
+    "return-type": "json",
+    "on-click": "nm-connection-editor",
+    "interval": 3600
+  },
+
+  "custom/bluetooth": {
+    "exec": "echo '{\"text\": \"\", \"tooltip\": \"Bluetooth Settings\"}'",
+    "return-type": "json",
+    "on-click": "blueman-manager",
+    "interval": 3600
+  },
+
+  "custom/now-playing": {
+    "exec": "/home/bigbossdev/.config/waybar/Other/niri/modules/now-playing.sh",
+    "return-type": "text",
+    "interval": 2,
+    "on-click": "playerctl --player=spotify play-pause",
+    "on-scroll-up": "playerctl --player=spotify next",
+    "on-scroll-down": "playerctl --player=spotify previous",
+    "tooltip": true
+  },
+
+  "custom/clock": {
+    "exec": "date '+ %H:%M'",
+    "return-type": "text",
+    "interval": 60,
+    "tooltip": true,
+    "tooltip-format": "Full date/time"
+  },
+
+  "custom/date": {
+    "exec": "date '+ %d %b'",
+    "return-type": "text",
+    "interval": 60,
+    "tooltip": true,
+    "tooltip-format": "Full date/time"
+  }
+}
