@@ -24,12 +24,12 @@
 	  "hyprland/window"
   ],
 
-  "modules-center": [
-    "clock#simpleclock",
-    "clock",
+//  "modules-center": [
+//    "clock#simpleclock",
+//    "clock",
     
 
-  ],
+//  ],
 
   "modules-right": [
     "pulseaudio",

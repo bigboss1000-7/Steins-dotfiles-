@@ -29,7 +29,7 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "alacritty"
-local fileManager = "caja"
+local fileManager = "nemo"
 local menu        = "rofi -show drun"
 
 
@@ -43,7 +43,8 @@ local menu        = "rofi -show drun"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function () 
-   hl.exec_cmd("waybar --config /home/bigbossdev/.config/waybar/Dotfiles/waybar/config.jsonc --style /home/bigbossdev/.config/waybar/Dotfiles/waybar/style.css & hyprpaper")
+   hl.exec_cmd("waybar --config /home/bigbossdev/.config/waybar/Dotfiles/waybar/config.jsonc --style /home/bigbossdev/.config/waybar/Dotfiles/waybar/style.css")
+   hl.exec_cmd("quickshell")
 end)
 
 
@@ -52,10 +53,10 @@ end)
 -------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
+-- hl.env("GTK_THEME", "Nord")
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-
 
 -----------------------
 ----- PERMISSIONS -----
@@ -175,7 +176,12 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 4,    bezier = "
 --     border_size = 0,
 --     rounding    = 0,
 -- })
+hl.window_rule({
+	name = "transparent nemo",
+	match = { class = "nemo" },
+	opacity = "0.9 override 0.8 override 0.9 override",
 
+})
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
     dwindle = {
