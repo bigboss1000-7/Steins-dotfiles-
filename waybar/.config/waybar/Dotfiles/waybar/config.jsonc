@@ -16,10 +16,8 @@
   "modules-left": [
 	  "custom/launcher",
 	  "hyprland/workspaces",
-	  "custom/cava",
 	  "tray",
 	  "custom/notification",
-	  "custom/clipboard",
 	  "custom/screenshot",
 	  "hyprland/window"
   ],
@@ -35,7 +33,6 @@
     "pulseaudio",
     "memory",
     "cpu",
-    "bluetooth",
     "battery",
     "custom/power"
   ],
@@ -117,18 +114,6 @@
     
   },
 
-"bluetooth": {
-    "format": "",
-    "format-disabled": "󰂲",
-    "format-off": "󰂲",
-    "format-on": "",
-    "format-connected": " {num_connections}",
-    "tooltip-format": "Bluetooth : {status}",
-    "tooltip-format-connected": "Connecté à :\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "• {device_alias} ({device_address})",
-    "on-click": "blueberry"
-  },
-
  "battery": {
    "states": {
       	"warning": 30,
@@ -148,11 +133,6 @@
     "tooltip": false,
     "on-click": "$HOME/.config/rofi/scripts/powermenu.sh",
     "format": "⏻"
-  },
-
-  "custom/cava": {
-    "format": "{}",
-    "exec": "~/.config/waybar/scripts/cava.sh"
   },
 
   "custom/notification": {
@@ -176,21 +156,13 @@
     "escape": true
   },
 
-  "custom/clipboard": {
-	  "format": "",
-	  "on-click": "$HOME/.config/rofi/scripts/clipboard.sh"
-  },
 
   "custom/screenshot": {
 	  "format": "󰹑",
 	  "on-click": "hyprshot -m region"
   },
 
-  "custom/colorpicker": {
-      "format": "" ,
-      "on-click": "hyprpicker -a"
 
-  },
 
   "custom/launcher": {
       "tooltip": false,

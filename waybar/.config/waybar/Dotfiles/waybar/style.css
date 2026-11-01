@@ -2,7 +2,7 @@
 -  Palette & constantes
 - =========================== */
 
-@define-color base-bg rgba(30, 30, 46, 0.9);
+@define-color base-bg rgb(0, 0, 0);
 @define-color base-bg-solid #1e1e2e;
 @define-color base-fg #cdd6f4;
 
@@ -11,25 +11,24 @@
 @define-color ws-bg-urgent #11121d;
 
 @define-color ws-fg @base-fg;
-@define-color ws-fg-active #89b4fa;
-@define-color ws-fg-urgent #f38ba8;
+@define-color ws-fg-active #ffffff;
+@define-color ws-fg-urgent #ffffff;
 
 @define-color mpris-border @base-bg-solid;
 
-@define-color cpu-fg #94e2d5;
-@define-color mem-fg #cba6f7;
-@define-color clock-fg #74c7ec;
-@define-color clock-simple-fg #89b4fa;
-@define-color window-fg @base-fg;
-@define-color audio-fg #b4befe;
-@define-color audio-muted-fg #a6adc8;
-@define-color tray-fg #a6d189;
-@define-color bluetooth-fg #8aadf4;
-@define-color battery-fg #f5a97f;
-@define-color logo-fg #89b4fa;
-@define-color cava-fg #57ec7c;
-@define-color power-fg #f38ba8;
-
+@define-color cpu-fg #ffffff;
+@define-color mem-fg #ffffff;
+@define-color clock-fg #ffffff;
+@define-color clock-simple-fg #ffffff;
+@define-color window-fg #ffffff;
+@define-color audio-fg #ffffff;
+@define-color audio-muted-fg #ffffff;
+@define-color tray-fg #ffffff;
+@define-color bluetooth-fg #ffffff;
+@define-color battery-fg #ffffff;
+@define-color logo-fg #ffffff;
+@define-color cava-fg #ffffff;
+@define-color power-fg #ffffff;
 @define-color tooltip-bg #181825;
 @define-color tooltip-border #89b4fa;
 @define-color sep-fg #585b70;
@@ -53,9 +52,7 @@ window#waybar {
   transition-duration: 0.5s;
 }
 
-/* ===========================
--  Modules génériques
-- =========================== */
+
 
 #clock,
 #pulseaudio,

@@ -28,10 +28,10 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal    = "alacritty"
+local terminal    = "kitty"
 local fileManager = "nemo"
 local menu        = "rofi -show drun"
-
+local browser = "zen-browser"
 
 -------------------
 ---- AUTOSTART ----
@@ -114,14 +114,14 @@ hl.config({
         shadow = {
             enabled      = true,
             range        = 20,
-            render_power = 20,
+            render_power = 2,
             color        = 0xFF381D4D,
         },
 
         blur = {
             enabled   = true,
-            size      = 3,
-            passes    = 1,
+            size      = 6,
+            passes    = 2,
             vibrancy  = 0.1696,
         },
     },
@@ -131,7 +131,9 @@ hl.config({
     },
 })
 
--- Default curves and animations, see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
+-- Default curves and animations, see https://wiki.hypr.land/configuring/core/animations/
+
+hl.curve("easeOutBack",   { type = "bezier", points = { {0.34, 1.56},    {0.64, 1}    } })
 hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
 hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}       } })
@@ -139,13 +141,13 @@ hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
 -- Default springs
-hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
+hl.curve("easy",           { type = "spring", mass = 1, stiffness = 238.1191, damping = 24.21279333 })
 
 hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
 hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
 hl.animation({ leaf = "windows",       enabled = true,  speed = 4.79, spring = "easy" })
-hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 2,  spring = "easy",         style = "popin 87%" })
-hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1, bezier = "linear",       style = "popin 87%" })
+hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4,  bezier = "easeOutBack",         style = "popin 87%" })
+hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 2, bezier = "linear",       style = "popin 87%" })
 hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
 hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
 hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
@@ -154,9 +156,9 @@ hl.animation({ leaf = "layersIn",      enabled = true,  speed = 2,    bezier = "
 hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
 hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
 hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
-hl.animation({ leaf = "workspaces",    enabled = true,  speed = 4, bezier = "easeOutQuint", style = "slide" })
-hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 4, bezier = "easeOutQuint", style = "slide" })
-hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 4, bezier = "easeOutQuint", style = "slide" })
+hl.animation({ leaf = "workspaces",    enabled = true,  speed = 5, bezier = "easeOutQuint", style = "slide" })
+hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 5, bezier = "easeOutQuint", style = "slide" })
+hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 5, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 4,    bezier = "quick" })
 
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
@@ -175,13 +177,19 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 4,    bezier = "
 --     match = { float = false, workspace = "f[1]" },
 --     border_size = 0,
 --     rounding    = 0,
--- })
+-- }
 hl.window_rule({
-	name = "transparent nemo",
-	match = { class = "nemo" },
-	opacity = "0.9 override 0.8 override 0.9 override",
+	name = "transparent general",
+	match = { class = "^(vesktop|nemo|md.obsidian.Obsidian)$" },
+	opacity = "0.9 override 0.8 override 1 override",
 
 })
+
+
+
+
+
+
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
     dwindle = {
@@ -200,6 +208,11 @@ hl.config({
 hl.config({
     scrolling = {
         fullscreen_on_one_column = true,
+    },
+})
+hl.config({
+    quirks = {
+        skip_non_kms_dmabuf_formats = false,
     },
 })
 
@@ -309,10 +322,12 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 --special bind
+hl.bind(mainMod .. "+ Z", hl.dsp.exec_cmd(browser))
 hl.bind("print", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind(mainMod .. " + print", hl.dsp.exec_cmd("hyprshot -m window"))
 hl.bind("SHIFT + print", hl.dsp.exec_cmd("hyprshot -m region"))
-hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian")) 
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
